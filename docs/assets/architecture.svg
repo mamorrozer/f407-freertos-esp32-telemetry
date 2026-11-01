@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="450" viewBox="0 0 1280 450" role="img" aria-labelledby="title desc">
+  <title id="title">双 MCU FreeRTOS 环境遥测系统</title>
+  <desc id="desc">BMP280 与 AHT20 连接 STM32F407。F407 使用 FreeRTOS 采集、显示并经 UART 将遥测发送给 ESP32-S3，再由 Wi-Fi 发布到 MQTT。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#101d31"/></linearGradient>
+    <linearGradient id="f407" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#123c58"/><stop offset="1" stop-color="#13536b"/></linearGradient>
+    <linearGradient id="esp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#193c5a"/><stop offset="1" stop-color="#254f78"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#020617" flood-opacity=".36"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#62d6d1"/></marker>
+    <style>
+      text { font-family: Inter, "Segoe UI", "Microsoft YaHei", sans-serif; }
+      .muted { fill: #b8c8da; } .white { fill: #f6fbff; } .cyan { fill: #72e0dc; }
+      .card { stroke: #42627e; stroke-width: 1.5; } .inner { fill: #0e1b2c; stroke: #31516c; stroke-width: 1; }
+    </style>
+  </defs>
+  <rect width="1280" height="450" rx="28" fill="url(#bg)"/>
+  <circle cx="1150" cy="52" r="120" fill="#0e7490" opacity=".10"/><circle cx="34" cy="410" r="110" fill="#0e7490" opacity=".08"/>
+  <text x="52" y="52" class="cyan" font-size="14" font-weight="700" letter-spacing="2.8">EMBEDDED · REAL-TIME · CONNECTED</text>
+  <text x="52" y="91" class="white" font-size="29" font-weight="700">从周期采样到 MQTT 遥测</text>
+  <text x="52" y="119" class="muted" font-size="15">职责分离 · 队列解耦 · 可观测的断网恢复路径</text>
+  <g filter="url(#shadow)">
+    <rect x="48" y="151" width="492" height="238" rx="20" fill="url(#f407)" class="card"/>
+    <rect x="584" y="151" width="300" height="238" rx="20" fill="url(#esp)" class="card"/>
+    <rect x="928" y="151" width="304" height="238" rx="20" fill="#172b43" class="card"/>
+  </g>
+  <text x="76" y="187" class="cyan" font-size="13" font-weight="700" letter-spacing="1.5">SENSOR TERMINAL</text>
+  <text x="76" y="218" class="white" font-size="23" font-weight="700">STM32F407 + FreeRTOS</text>
+  <text x="76" y="242" class="muted" font-size="14">1 Hz 采样 · SensorFrame · 任务队列</text>
+  <rect x="76" y="263" width="197" height="82" rx="12" class="inner"/>
+  <text x="94" y="290" class="white" font-size="15" font-weight="600">BMP280 + AHT20</text>
+  <text x="94" y="316" class="muted" font-size="13">I²C2 · 温湿度 / 气压</text>
+  <rect x="291" y="263" width="220" height="82" rx="12" class="inner"/>
+  <text x="309" y="290" class="white" font-size="15" font-weight="600">ST7735S TFT</text>
+  <text x="309" y="316" class="muted" font-size="13">SPI1 · 四按键 · 本地交互</text>
+  <text x="76" y="371" class="muted" font-size="13">显示队列与遥测队列分离</text>
+  <text x="608" y="187" class="cyan" font-size="13" font-weight="700" letter-spacing="1.5">WIRELESS GATEWAY</text>
+  <text x="608" y="218" class="white" font-size="22" font-weight="700">ESP32-S3 N16R8</text>
+  <text x="608" y="245" class="muted" font-size="14">UART 解析 · 状态机 · 缓存</text>
+  <rect x="608" y="273" width="252" height="72" rx="12" class="inner"/>
+  <text x="630" y="301" class="white" font-size="15" font-weight="600">Wi-Fi + MQTT</text>
+  <text x="630" y="325" class="muted" font-size="13">断连重试 · RAM FIFO · JSON</text>
+  <text x="608" y="371" class="muted" font-size="13">缓存有限且不跨复位保存</text>
+  <text x="952" y="187" class="cyan" font-size="13" font-weight="700" letter-spacing="1.5">MESSAGE CONSUMER</text>
+  <text x="952" y="218" class="white" font-size="23" font-weight="700">MQTT Broker</text>
+  <text x="952" y="246" class="muted" font-size="14">配置 Topic · QoS 0</text>
+  <rect x="952" y="273" width="256" height="72" rx="12" class="inner"/>
+  <text x="974" y="301" class="white" font-size="15" font-weight="600">MQTTX / 应用订阅端</text>
+  <text x="974" y="325" class="muted" font-size="13">实时观察 JSON 遥测</text>
+  <text x="952" y="371" class="muted" font-size="13">QoS 0 不提供送达确认</text>
+  <path d="M540 270H570" fill="none" stroke="#62d6d1" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="562" y="258" text-anchor="middle" class="cyan" font-size="12" font-weight="700">UART</text>
+  <path d="M884 270H914" fill="none" stroke="#62d6d1" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="906" y="258" text-anchor="middle" class="cyan" font-size="12" font-weight="700">Wi-Fi</text>
+</svg>

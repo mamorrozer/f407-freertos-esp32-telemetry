@@ -1,0 +1,47 @@
+# Build outputs and generated tool state
+build*/
+**/build*/
+*.elf
+*.hex
+*.bin
+*.map
+*.o
+*.a
+compile_commands.json
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+build.ninja
+ninja.*
+
+# ESP-IDF generated configuration and artifacts
+**/sdkconfig
+**/sdkconfig.old
+**/sdkconfig.verify
+**/dependencies.lock
+**/managed_components/
+**/flasher_args.json
+
+# Local credentials and private keys
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+**/secrets/
+*.pem
+*.key
+
+# Kept in the local release workspace, excluded from the public snapshot
+stage2/F407_SensorTerminal/Core/Inc/ssd1306.h
+stage2/F407_SensorTerminal/Core/Src/ssd1306.c
+host_tests/test_ssd1306.c
+stage2/F407_SensorTerminal/Middlewares/FreeRTOS_GCC/include/FreeRTOSConfig_template.h
+
+# Local editor / OS files
+.vscode/
+**/.vscode/
+.idea/
+**/.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,64 @@
+menu "Telemetry MQTT node"
+
+config TELEMETRY_WIFI_SSID
+    string "Wi-Fi SSID"
+    default "CHANGE_ME"
+
+config TELEMETRY_WIFI_PASSWORD
+    string "Wi-Fi password"
+    default "CHANGE_ME"
+
+config TELEMETRY_MQTT_URI
+    string "MQTT broker URI"
+    default "mqtt://test.mosquitto.org:1883"
+
+config TELEMETRY_MQTT_TOPIC
+    string "MQTT publish topic"
+    default "rtos/telemetry"
+
+config TELEMETRY_DEMO_PUBLISH
+    bool "Publish fixed demo samples without UART input"
+    default n
+    help
+        Use a periodic synthetic sample to validate Wi-Fi and MQTT before
+        the F407 sensor terminal and UART link are ready.
+
+config TELEMETRY_REMOTE_CONFIG
+    bool "Enable MQTT configuration commands"
+    default n
+    help
+        Subscribe to the configuration topic and persist validated commands
+        in NVS. Disabled by default until the broker and command path are
+        tested on hardware.
+
+config TELEMETRY_CONFIG_TOPIC
+    string "MQTT configuration topic"
+    default "rtos/telemetry/config"
+
+config TELEMETRY_CONFIG_ACK_TOPIC
+    string "MQTT configuration acknowledgement topic"
+    default "rtos/telemetry/config_ack"
+
+config TELEMETRY_ENABLE_TASK_WDT
+    bool "Register the health task with the ESP-IDF task watchdog"
+    default n
+    help
+        This is disabled until the watchdog timeout and recovery behavior are
+        observed on the actual board.
+
+config TELEMETRY_FAULT_INJECTION
+    bool "Enable one-shot publish fault injection"
+    default n
+
+config TELEMETRY_FAULT_DROP_FIRST
+    bool "Drop the first publish attempt"
+    depends on TELEMETRY_FAULT_INJECTION
+    default n
+
+config TELEMETRY_FAULT_DELAY_MS
+    int "Delay one publish attempt (milliseconds)"
+    depends on TELEMETRY_FAULT_INJECTION
+    range 0 5000
+    default 0
+
+endmenu

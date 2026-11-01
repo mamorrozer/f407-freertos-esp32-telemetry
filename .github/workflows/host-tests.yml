@@ -1,0 +1,29 @@
+name: Host Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  host-tests:
+    name: CMake / CTest
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure host test suite
+        run: cmake -S host_tests -B build/host-tests -G Ninja
+
+      - name: Build host tests
+        run: cmake --build build/host-tests --parallel 2
+
+      - name: Run host tests
+        run: ctest --test-dir build/host-tests --output-on-failure
