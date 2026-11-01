@@ -2,6 +2,8 @@
 
 #include "telemetry_protocol.h"
 
+#include <stddef.h>
+
 void telemetry_faults_init(TelemetryFaultPlan *plan,
                            TelemetryFaultCounters *counters)
 {

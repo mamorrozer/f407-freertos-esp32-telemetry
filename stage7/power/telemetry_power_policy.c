@@ -1,5 +1,7 @@
 #include "telemetry_power_policy.h"
 
+#include <stddef.h>
+
 TelemetryPowerState telemetry_power_evaluate(const TelemetryPowerInputs *inputs)
 {
     if (inputs == NULL || inputs->pending_data || inputs->sample_due)

@@ -2,6 +2,8 @@
 
 #include "telemetry_protocol.h"
 
+#include <stddef.h>
+
 int telemetry_bridge_encode_sensor_frame(const SensorFrame *sensor,
                                          uint8_t *buffer,
                                          size_t capacity,
