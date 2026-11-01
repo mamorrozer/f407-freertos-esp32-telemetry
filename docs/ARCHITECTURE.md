@@ -26,7 +26,7 @@ The F407 firmware creates an I2C mutex as a bus-access boundary. Current sensor 
 ## Reliability boundaries
 
 - The ESP32 cache is finite and volatile. When full, the oldest/new incoming-frame policy is defined by `stage6/cache/telemetry_cache.c`; inspect the implementation and runtime counters before making stronger delivery claims.
-- MQTT QoS 0 has no broker acknowledgement guarantee. ESP MQTT API acceptance is not equivalent to subscriber receipt.
+- The telemetry publisher uses MQTT QoS 1 and removes the cached FIFO head only after a matching broker PUBACK and sequence check. QoS 1 may redeliver messages; it does not provide end-to-end exactly-once processing or durable storage across ESP32 reset/power loss.
 - Sensor validity is carried per frame; invalid readings are not evidence of a valid physical measurement.
 - Watchdog, remote configuration, and storage-related modules are optional or standalone unless enabled and linked by the current firmware configuration.
 
