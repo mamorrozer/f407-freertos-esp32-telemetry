@@ -1,5 +1,7 @@
 #include "telemetry_health.h"
 
+#include <stddef.h>
+
 void telemetry_health_init(TelemetryHealthWatch *watch, uint32_t timeout_ms)
 {
     if (watch != NULL)
